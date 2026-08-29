@@ -61,7 +61,7 @@ body { background: linear-gradient(135deg, var(--bleu-fonce), #112240); color: v
 .btn-oeil:hover { color: #475569; }
 .icone-oeil { width: 22px; height: 22px; }
 
-.auth-box button {
+.auth-box button:not(.btn-oeil) {
   width: 100%; padding: 0.9rem;
   background: linear-gradient(90deg, var(--bleu), var(--orange));
   color: #fff; border: none; border-radius: 8px;
