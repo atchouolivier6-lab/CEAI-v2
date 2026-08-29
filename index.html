@@ -21,7 +21,15 @@
 
       <div id="connexionForm">
         <input type="email" id="connEmail" placeholder="Adresse email" />
-        <input type="password" id="connMdp" placeholder="Mot de passe" />
+        <div class="champ-mot-de-passe">
+          <input type="password" id="connMdp" placeholder="Mot de passe" />
+          <button type="button" class="btn-oeil" id="btnOeilConnexion" aria-label="Afficher le mot de passe">
+            <svg class="icone-oeil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
         <button type="button" id="btnConnexion">Se connecter</button>
         <p class="bas-form">Pas encore de compte ? <a href="#" id="lienInscription">S'inscrire</a></p>
         <p id="authErreur" class="erreur"></p>
@@ -30,7 +38,15 @@
       <div id="inscriptionForm" class="cache">
         <input type="text" id="inscNom" placeholder="Nom et Prénom" />
         <input type="email" id="inscEmail" placeholder="Adresse email" />
-        <input type="password" id="inscMdp" placeholder="Mot de passe (6 caractères minimum)" />
+        <div class="champ-mot-de-passe">
+          <input type="password" id="inscMdp" placeholder="Mot de passe (6 caractères minimum)" />
+          <button type="button" class="btn-oeil" id="btnOeilInscription" aria-label="Afficher le mot de passe">
+            <svg class="icone-oeil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
         <button type="button" id="btnInscription">Valider mon inscription</button>
         <p class="bas-form">Déjà un compte ? <a href="#" id="lienConnexion">Se connecter</a></p>
         <p id="inscErreur" class="erreur"></p>
@@ -289,4 +305,4 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="script.js"></script>
 </body>
-  </html>
+              </html>
