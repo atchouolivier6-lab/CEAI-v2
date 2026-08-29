@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEAI — Connaissance Entre Amis Intimes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================================================== -->
+  <!-- ÉCRAN DE CONNEXION / INSCRIPTION                        -->
+  <!-- ===================================================== -->
+  <div id="authScreen" class="auth-screen">
+    <div class="auth-box">
+      <div class="login-logo">
+        <img src="https://i.postimg.cc/7CJbtf9j/logo.png" alt="Logo CEAI" />
+      </div>
+      <h2 id="authTitre">Connexion</h2>
+      <p class="sous-texte">Connaissance Entre Amis Intimes</p>
+
+      <div id="connexionForm">
+        <input type="email" id="connEmail" placeholder="Adresse email" />
+        <input type="password" id="connMdp" placeholder="Mot de passe" />
+        <button type="button" id="btnConnexion">Se connecter</button>
+        <p class="bas-form">Pas encore de compte ? <a href="#" id="lienInscription">S'inscrire</a></p>
+        <p id="authErreur" class="erreur"></p>
+      </div>
+
+      <div id="inscriptionForm" class="cache">
+        <input type="text" id="inscNom" placeholder="Nom et Prénom" />
+        <input type="email" id="inscEmail" placeholder="Adresse email" />
+        <input type="password" id="inscMdp" placeholder="Mot de passe (6 caractères minimum)" />
+        <button type="button" id="btnInscription">Valider mon inscription</button>
+        <p class="bas-form">Déjà un compte ? <a href="#" id="lienConnexion">Se connecter</a></p>
+        <p id="inscErreur" class="erreur"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- SITE PRINCIPAL                                           -->
+  <!-- ===================================================== -->
+  <div id="sitePrincipal" class="site-principal cache">
+
+    <!-- EN-TÊTE -->
+    <header class="entete">
+      <div class="container entete-contenu">
+        <div class="logo-gauche">
+          <img src="https://i.postimg.cc/7CJbtf9j/logo.png" alt="Logo CEAI" class="logo-ceai" />
+        </div>
+        <div class="titre-centre">
+          <h1>CONNAISSANCE ENTRE AMIS INTIMES</h1>
+          <p class="slogan">Ensemble, on va plus loin</p>
+          <p class="valeurs">Engagement — Rigueur — Amitié</p>
+        </div>
+        <div class="photo-droite">
+          <img src="https://i.postimg.cc/dZw10nF2/fondateurs.jpg" alt="Les fondateurs" class="img-fondateurs" />
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================================================== -->
+    <!-- MENU PRINCIPAL — ACCORDÉON                               -->
+    <!-- ===================================================== -->
+    <nav class="menu-principal">
+      <div class="container">
+        <div class="menu-deroulant">
+          <button class="btn-menu" id="btnToggleMenu" aria-expanded="false">
+            <span class="icone-menu" aria-hidden="true">&#9776;</span>
+            <span>Menu</span>
+          </button>
+
+          <div id="optionsMenu" class="options-cachees">
+
+            <a href="#" class="lien-menu" data-section="accueil">Accueil</a>
+
+            <!-- BLOC COTISATION -->
+            <button type="button" class="menu-accordeon" data-cible="sousCotisation" aria-expanded="false">
+              <span>Cotisation</span>
+              <span class="fleche-accordeon" aria-hidden="true">&#9656;</span>
+            </button>
+            <div id="sousCotisation" class="sous-menu">
+              <a href="#" class="lien-menu" data-section="adherer-cotisation">Adhérer à la cotisation</a>
+              <a href="#" class="lien-menu" data-section="suivi-cotisation">Suivi de mes cotisations</a>
+              <a href="#" class="lien-menu" data-section="paiement-cotisation">Faire mon versement</a>
+            </div>
+
+            <!-- BLOC TONTINE -->
+            <button type="button" class="menu-accordeon" data-cible="sousTontine" aria-expanded="false">
+              <span>Tontine</span>
+              <span class="fleche-accordeon" aria-hidden="true">&#9656;</span>
+            </button>
+            <div id="sousTontine" class="sous-menu">
+              <a href="#" class="lien-menu" data-section="adherer-tontine">Rejoindre la tontine</a>
+              <a href="#" class="lien-menu" data-section="suivi-tontine">Suivi de mon cycle</a>
+              <a href="#" class="lien-menu" data-section="paiement-tontine">Faire mon versement</a>
+            </div>
+
+            <a href="#" class="lien-menu" data-section="publications">Publications</a>
+
+            <a href="#" class="lien-menu" data-section="notifications">
+              Notifications
+              <span id="compteurNotifs" class="badge-notif cache">0</span>
+            </a>
+
+            <a href="#" class="lien-menu" data-section="apropos">À propos de CEAI</a>
+
+            <a href="#" class="lien-menu zone-admin cache" data-section="espace-admin">Espace Administrateur</a>
+
+            <a href="#" class="lien-menu" id="lienDeconnexion">Se déconnecter</a>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+
+      <!-- ===================================================== -->
+      <!-- ACCUEIL                                                  -->
+      <!-- ===================================================== -->
+      <section id="sec-accueil" class="section active">
+        <h2>Bienvenue sur CEAI</h2>
+        <div class="cartes-resume">
+          <div class="carte">
+            <h3>Capital cotisation</h3>
+            <p class="gros-chiffre" id="capitalCotisation">0 F CFA</p>
+          </div>
+          <div class="carte">
+            <h3>Cycle de tontine en cours</h3>
+            <p class="gros-chiffre" id="etatTontine">Aucun</p>
+          </div>
+          <div class="carte">
+            <h3>Membres actifs</h3>
+            <p class="gros-chiffre"><span id="nbMembres">0</span></p>
+          </div>
+        </div>
+
+        <h3 class="titre-souligne">Dernières publications</h3>
+        <div id="publicationsAccueil" class="publications-liste">
+          <p class="note">Aucune publication pour l'instant</p>
+        </div>
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- COTISATION — CÔTÉ MEMBRE                                 -->
+      <!-- ===================================================== -->
+      <section id="sec-adherer-cotisation" class="section">
+        <h2>Adhérer à la cotisation</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <section id="sec-suivi-cotisation" class="section">
+        <h2>Suivi de mes cotisations</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <section id="sec-paiement-cotisation" class="section">
+        <h2>Faire mon versement — Cotisation</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- TONTINE — CÔTÉ MEMBRE                                    -->
+      <!-- ===================================================== -->
+      <section id="sec-adherer-tontine" class="section">
+        <h2>Rejoindre la tontine</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <section id="sec-suivi-tontine" class="section">
+        <h2>Suivi de mon cycle</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <section id="sec-paiement-tontine" class="section">
+        <h2>Faire mon versement — Tontine</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- PUBLICATIONS                                             -->
+      <!-- ===================================================== -->
+      <section id="sec-publications" class="section">
+        <h2>Publications</h2>
+        <p class="note">Cette section sera complétée à l'étape suivante.</p>
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- NOTIFICATIONS                                            -->
+      <!-- ===================================================== -->
+      <section id="sec-notifications" class="section">
+        <h2>Notifications</h2>
+        <p class="note">Toutes les activités et nouveautés de CEAI.</p>
+        <div id="listeNotifications">
+          <p class="note">Aucune notification pour l'instant</p>
+        </div>
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- À PROPOS                                                 -->
+      <!-- ===================================================== -->
+      <section id="sec-apropos" class="section">
+        <h2>À propos de CEAI</h2>
+        <div class="bloc-propos">
+          <h3>Présentation</h3>
+          <p>CEAI — Connaissance Entre Amis Intimes est une association fondée sur les valeurs de l'amitié, la confiance, la rigueur et l'engagement. Nous nous réunissons dans un but unique : épargner ensemble, construire un capital commun et réaliser dans un avenir proche des projets d'envergure qui feront de nous une société solide et reconnue.</p>
+          <p>Ce site permet à chaque membre de suivre ses cotisations et sa participation à la tontine, de consulter l'historique des versements et des réalisations, et de garantir une transparence totale dans la gestion commune. Chaque génération à venir pourra continuer cette œuvre, car nous bâtissons pour le long terme.</p>
+
+          <h3 class="titre-souligne">Membres fondateurs de CEAI</h3>
+          <div id="listeFondateurs" class="fondateurs-grille">
+            <div class="carte-fondateur">
+              <img src="https://i.postimg.cc/qtM4Gr2B/3a4071e1-3637-438a-97df-e94ff9aca194.jpg" alt="ATCHOU Basile" />
+              <h4>ATCHOU Basile</h4>
+              <p class="contact-fondateur">+229 0191156651</p>
+            </div>
+            <div class="carte-fondateur">
+              <img src="https://i.postimg.cc/V0XR63GX/16dd27af-3399-43c6-9086-fa783204b698.jpg" alt="KASSEIGNE Charles" />
+              <h4>KASSEIGNE Charles</h4>
+              <p class="contact-fondateur">+225 0160095674</p>
+            </div>
+            <div class="carte-fondateur">
+              <img src="https://i.postimg.cc/f36qRjWM/a4ced9b4-e3a7-4c98-a60d-62d706609cc5.jpg" alt="ATCHOU Jules" />
+              <h4>ATCHOU Jules</h4>
+              <p class="contact-fondateur">+225 0585790106</p>
+            </div>
+            <div class="carte-fondateur">
+              <img src="https://i.postimg.cc/3yBWK9FC/1001f76a-8b67-478f-ae52-a95fab3710bd.jpg" alt="AKPA Emile" />
+              <h4>AKPA Emile</h4>
+              <p class="contact-fondateur">+229 0150290643</p>
+            </div>
+            <div class="carte-fondateur">
+              <img src="https://i.postimg.cc/zLWS0m58/0a96c591-7c11-42cb-9fbf-b4552ac75a12.jpg" alt="ATCHOU Olivier" />
+              <h4>ATCHOU Olivier</h4>
+              <p class="contact-fondateur">+229 0152353448</p>
+            </div>
+          </div>
+
+          <p class="concepteur">Concepteur et fondateur du site : Atchou Olivier — Électricien Bâtiment</p>
+        </div>
+      </section>
+
+      <!-- ===================================================== -->
+      <!-- ESPACE ADMINISTRATEUR                                    -->
+      <!-- ===================================================== -->
+      <section id="sec-espace-admin" class="section zone-admin cache">
+        <h2>Espace Administrateur</h2>
+
+        <div class="sous-onglets-admin">
+          <button type="button" class="onglet-admin actif" data-onglet="admin-membres">Membres</button>
+          <button type="button" class="onglet-admin" data-onglet="admin-cotisation">Cotisation</button>
+          <button type="button" class="onglet-admin" data-onglet="admin-tontine">Tontine</button>
+          <button type="button" class="onglet-admin" data-onglet="admin-publications">Publications</button>
+          <button type="button" class="onglet-admin" data-onglet="admin-notifications">Notifications</button>
+          <button type="button" class="onglet-admin" data-onglet="admin-gouvernance">Administrateurs</button>
+        </div>
+
+        <div id="panneau-admin-membres" class="panneau-admin actif">
+          <p class="note">Gestion des membres — à compléter à l'étape suivante.</p>
+        </div>
+        <div id="panneau-admin-cotisation" class="panneau-admin">
+          <p class="note">Session, quota, versements, dépenses, clôture — à compléter à l'étape suivante.</p>
+        </div>
+        <div id="panneau-admin-tontine" class="panneau-admin">
+          <p class="note">Lancement de cycle, tirage au sort, suivi des tours — à compléter à l'étape suivante.</p>
+        </div>
+        <div id="panneau-admin-publications" class="panneau-admin">
+          <p class="note">Création de publications — à compléter à l'étape suivante.</p>
+        </div>
+        <div id="panneau-admin-notifications" class="panneau-admin">
+          <p class="note">Gestion des notifications — à compléter à l'étape suivante.</p>
+        </div>
+        <div id="panneau-admin-gouvernance" class="panneau-admin">
+          <p class="note">Propositions et votes d'administrateurs — à compléter à l'étape suivante.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="pied-page">
+      <div class="container">
+        <p>&copy; 2026 CEAI — Connaissance Entre Amis Intimes · Ensemble, on va plus loin · Engagement — Rigueur — Amitié</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="script.js"></script>
+</body>
+  </html>
