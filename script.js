@@ -138,6 +138,36 @@ document.addEventListener("DOMContentLoaded", () => {
     await supabaseClient.auth.signOut();
   });
 
+    // =====================================================
+  // PROFIL DU MEMBRE CONNECTE
+  // =====================================================
+  // Variable accessible dans tout le fichier : contient la
+  // fiche du membre actuellement connecte (nom, role, modes).
+  window.membreCourant = null;
+
+  async function chargerProfilMembre(idCompte) {
+    const { data, error } = await supabaseClient
+      .from("membres")
+      .select("*")
+      .eq("compte_id", idCompte)
+      .single();
+
+    if (error) {
+      console.error("Impossible de charger le profil du membre :", error.message);
+      return;
+    }
+
+    window.membreCourant = data;
+    mettreAJourVisibiliteAdmin();
+  }
+
+  function mettreAJourVisibiliteAdmin() {
+    const estAdmin = window.membreCourant && window.membreCourant.role === "admin";
+    document.querySelectorAll(".zone-admin").forEach((element) => {
+      element.classList.toggle("cache", !estAdmin);
+    });
+  }
+
   // =====================================================
   // SURVEILLER L'ETAT DE CONNEXION
   // =====================================================
@@ -145,9 +175,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (session) {
       authScreen.classList.add("cache");
       sitePrincipal.classList.remove("cache");
+      chargerProfilMembre(session.user.id);
     } else {
       authScreen.classList.remove("cache");
       sitePrincipal.classList.add("cache");
+      window.membreCourant = null;
     }
   });
 
