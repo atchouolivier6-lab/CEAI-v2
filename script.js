@@ -77,6 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================================================
   // INSCRIPTION
   // =====================================================
+  // La fiche membre est desormais creee automatiquement par
+  // la base de donnees (voir trigger_nouveau_membre.sql).
+  // Le site se contente d'envoyer le nom dans les metadonnees
+  // du compte, que le trigger recupere de son cote.
   btnInscription.addEventListener("click", async () => {
     const nom = document.getElementById("inscNom").value.trim();
     const email = document.getElementById("inscEmail").value.trim();
@@ -90,26 +94,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const { data, error } = await supabaseClient.auth.signUp({
+    const { error } = await supabaseClient.auth.signUp({
       email,
-      password: mdp
+      password: mdp,
+      options: {
+        data: { nom: nom }
+      }
     });
 
     if (error) {
       erreur.textContent = traduireErreurAuth(error.message);
-      return;
-    }
-
-    const { error: erreurMembre } = await supabaseClient
-      .from("membres")
-      .insert({
-        compte_id: data.user.id,
-        nom: nom,
-        date_adhesion: new Date().toISOString().slice(0, 10)
-      });
-
-    if (erreurMembre) {
-      erreur.textContent = "Compte créé, mais la fiche membre n'a pas pu être enregistrée : " + erreurMembre.message;
       return;
     }
 
