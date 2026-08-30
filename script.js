@@ -146,18 +146,29 @@ document.addEventListener("DOMContentLoaded", () => {
   window.membreCourant = null;
 
   async function chargerProfilMembre(idCompte) {
+    const debug = document.getElementById("debugProfil");
+
     const { data, error } = await supabaseClient
       .from("membres")
       .select("*")
-      .eq("compte_id", idCompte)
-      .single();
+      .eq("compte_id", idCompte);
 
     if (error) {
-      console.error("Impossible de charger le profil du membre :", error.message);
+      if (debug) debug.textContent = "Erreur : " + error.message;
       return;
     }
 
-    window.membreCourant = data;
+    if (!data || data.length === 0) {
+      if (debug) debug.textContent = "Aucune fiche membre trouvee pour ce compte (id: " + idCompte + ")";
+      return;
+    }
+
+    if (data.length > 1) {
+      if (debug) debug.textContent = "Attention : " + data.length + " fiches trouvees pour ce compte.";
+    }
+
+    window.membreCourant = data[0];
+    if (debug) debug.textContent = "Nom : " + data[0].nom + " | Role : [" + data[0].role + "]";
     mettreAJourVisibiliteAdmin();
   }
 
